@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate
+from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework import generics, status
 from rest_framework.response import Response
@@ -24,5 +25,10 @@ class LoginView(APIView):
             }
             return Response(data, status=status.HTTP_200_OK)
         return Response({'message': "Invalid username and/or password."}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 

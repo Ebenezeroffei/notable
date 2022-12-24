@@ -8,7 +8,15 @@ const textOnBlurHandler = (pattern, value, setIsError) => {
         : setIsError(true);
 }
 
+const passwordValidation = (password) => {
+    return passwordRegex.test(password);
+}
+
+const emailValidation = (email) => {
+    return emailRegex.test(email);
+}
 
 
 
-export { textOnBlurHandler, passwordRegex, emailRegex, nameRegex }; 
+
+export { textOnBlurHandler, passwordRegex, emailRegex, nameRegex, passwordValidation, emailValidation }; 

@@ -1,14 +1,19 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import TextField from '../../components/TextField';
 import EmailTextField from '../../components/TextField/EmailTextField';
 import PasswordTextField from '../../components/TextField/PasswordTextField';
 import Button from '../../components/Button';
+import { signUp } from '../../utils/auth';
 
 const Register = () => {
     const username = useRef();
     const email = useRef();
     const password1 = useRef();
     const password2 = useRef();
+    const [isLoading, setIsLoading] = useState(false);
+    const router = useNavigate();
 
     return (
         <main>
@@ -20,9 +25,13 @@ const Register = () => {
                 <PasswordTextField value={password1} />
                 <PasswordTextField value={password2} label="Password Confirmation" />
                 <div className='my-4'>
-                    <Button text="Sign Up" width="w-full" />
+                    <Button onClickHandler={() => signUp(username.current.value, email.current.value, password1.current.value, password2.current.value, setIsLoading, router)} isLoading={isLoading} text="Sign Up" width="w-full" />
                 </div>
-                <p className='text-center text-gray-600 text-xs'>Already On Notable? <a href="/login" className='font-semibold text-indigo-500 hover:underline'>Sign In</a></p>
+                <p className='text-center text-gray-600 text-xs'>Already On Notable?
+                    <Link to="/login">
+                        <span className='font-semibold text-indigo-500 hover:underline'> Sign In</span>
+                    </Link>
+                </p>
             </section>
         </main>
     );
