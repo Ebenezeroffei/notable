@@ -1,27 +1,64 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../Navbar'
 import Header from './Header';
+import PhoneSideBar from './PhoneSideBar';
+import { useNavStore } from '../../utils/store';
 
 const Wrapper = () => {
+    const bigScreen = useNavStore(state => state.bigScreen);
+    const smallScreen = useNavStore(state => state.smallScreen);
+    const closePhoneSideBar = useNavStore(state => state.phoneSideBarOff);
+    const isSmallScreen = useNavStore(state => state.isSmallScreen);
+
+    useEffect(() => {
+        window.onresize = () => {
+            if (window.innerWidth < 700) {
+                smallScreen();
+            } else {
+                bigScreen();
+                closePhoneSideBar();
+            };
+        }
+        if (window.innerWidth < 700) {
+            smallScreen();
+        } else {
+            bigScreen();
+            closePhoneSideBar();
+        };
+
+
+
+        return window.removeEventListener('resize', () => { })
+    }, []);
+
     return (
         <>
-            <section className='fixed w-60 h-full bg-white border-r left-0 top-0'>
-                <Navbar />
-            </section>
-            <main className='flex'>
-                <section className='flex-none w-60 bg-white'>
-                </section>
-                <section className='w-full relative'>
-                    <Header />
-                    <h1 className="text-6xl m-2">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque minima modi nesciunt nemo ipsa commodi incidunt iste cumque aliquid debitis autem veniam officiis quo atque, explicabo earum, provident ratione doloremque!
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro, sed quis praesentium cupiditate animi vero, aliquam ex iste commodi, similique debitis deleniti. Quasi quis omnis libero modi inventore quidem ducimus!
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem, ipsum totam alias similique nesciunt quam perferendis sed eveniet labore exercitationem, a sapiente praesentium sint excepturi distinctio ea corporis. Consequuntur, facere!
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident, rerum ducimus! Quod voluptatem, quam voluptas soluta unde eum ut dignissimos neque eius architecto voluptates dolor alias error sit facere illum.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto consequuntur harum sed ducimus optio eius voluptate quos dignissimos recusandae et, asperiores molestias exercitationem ex, repudiandae numquam saepe. Deleniti, suscipit quam!
-                    </h1>
-                </section>
-            </main>
+            <PhoneSideBar />
+            {
+                isSmallScreen
+                    ? <main>
+                        <aside className='fixed w-0 h-screen top-0 -left-10 border-r border-gray-300 transition-all duration-150'>
+                            <Navbar />
+                        </aside>
+                        <section className='ml-0 transition-all duration-150'>
+                            <Header />
+                            <div className='m-3'>
+                                Hello
+                            </div>
+                        </section>
+                    </main>
+                    : <main>
+                        <aside className='fixed w-60 h-screen top-0 left-0 border-r border-gray-300'>
+                            <Navbar />
+                        </aside>
+                        <section className='ml-60'>
+                            <Header />
+                            <div className='m-3'>
+                                Hello
+                            </div>
+                        </section>
+                    </main>
+            }
         </>
     );
 }
