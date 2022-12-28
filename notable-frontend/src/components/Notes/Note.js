@@ -1,4 +1,5 @@
 import React from 'react';
+import { MdStar, MdStarOutline } from 'react-icons/md';
 
 const Note = () => {
     return (
@@ -8,7 +9,19 @@ const Note = () => {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae illo vitae id est ipsa, illum tenetur officia dolor reiciendis voluptate maiores quibusdam minima ducimus ad maxime nisi nemo numquam aperiam.
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime laboriosam sequi nisi laborum possimus eligendi! Iste inventore dicta voluptas totam, laudantium doloribus et consequatur iusto quisquam quas consectetur eos quibusdam.
             </p>
-            <p className='text-xs inline-block mt-2 text-gray-600 bg-indigo-100 p-2 rounded font-semibold group-hover:bg-indigo-200 transition-all duration-200 shadow'>Written By: <span className='text-indigo-500'>eoffei</span></p>
+            <div className='flex flex-wrap mt-2 justify-between'>
+                <p className='text-xs text-gray-600 bg-indigo-100 p-2 rounded font-semibold group-hover:bg-indigo-200 transition-all duration-200 shadow'>Written By
+                    <span className='text-indigo-500'> eoffei</span>
+                </p>
+                {
+                    // TODO: Favorite
+                    false
+                        ? <p className='text-xs text-gray-600 bg-indigo-100 p-2 rounded font-semibold group-hover:bg-indigo-200 transition-all duration-200 shadow flex items-center'> <MdStar size={15} className="mr-1 text-indigo-500" /> Favorite
+                        </p>
+                        : <p className='text-xs text-gray-600 bg-indigo-100 p-2 rounded font-semibold group-hover:bg-indigo-200 transition-all duration-200 shadow flex items-center'> <MdStarOutline size={15} className="mr-1 text-indigo-500" /> Add To Favorite
+                        </p>
+                }
+            </div>
         </section>
     );
 }
