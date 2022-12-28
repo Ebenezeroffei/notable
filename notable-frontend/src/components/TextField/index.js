@@ -3,6 +3,7 @@ import { textOnBlurHandler } from '../../utils/validation';
 
 const TextField = ({ isRequired = true, label, value, helpText = '', errorText = 'Please provide a valid value.', pattern = /.+/, textType = "text" }) => {
     const [isError, setIsError] = useState(false);
+    errorText = isRequired ? errorText : '';
 
     return (
         <section className='my-3'>

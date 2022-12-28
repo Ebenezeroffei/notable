@@ -11,4 +11,15 @@ const fetchPostData = async (url, formData, headers = {}) => {
 }
 
 
-export { fetchPostData };
+const waitTime = (ele, callback, timeOut = 1000) => {
+    let timer;
+    ele.current.onkeyup = () => {
+        clearTimeout(timer);
+        // TODO: Save Todo
+        timer = setTimeout(() => {
+            callback();
+        }, timeOut);
+    }
+}
+
+export { fetchPostData, waitTime };

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavStore } from '../utils/store';
+import { waitTime } from '../utils/misc';
 import TextField from '../components/TextField';
 import TextArea from '../components/TextField/TextArea';
 
@@ -11,22 +12,14 @@ const AddNote = () => {
 
     useEffect(() => {
         navigateTo(0, "Add Note");
-        let timer;
-        title.current.onkeyup = () => {
-            clearTimeout(timer);
-            // TODO: Save Todo
-            timer = setTimeout(() => toast("Save"), 1000);
-        }
 
-        body.current.onkeyup = () => {
-            clearTimeout(timer);
-            // TODO: Save Todo
-            timer = setTimeout(() => toast("Save"), 1000);
-        }
+        waitTime(title, () => toast("Title"));
+        waitTime(body, () => toast("Body"));
 
-        clearTimeout(timer);
-        body.current.removeEventListener('keyup', () => { });
-        title.current.removeEventListener('keyup', () => { });
+        return () => {
+            body.current.removeEventListener('keyup', () => { });
+            title.current.removeEventListener('keyup', () => { })
+        };
     }, [])
 
     return (
