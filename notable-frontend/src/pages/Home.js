@@ -12,7 +12,7 @@ const Home = () => {
     return (
         <>
             <Options>
-                <div className='bg-indigo-500 opacity-60 p-2 rounded flex mx-1 items-center cursor-pointer hover transition duration-200 hover:-translate-y-1 hover:shadow-lg hover:opacity-100'>
+                <div className='bg-indigo-500 opacity-60 p-2 rounded flex mx-1 items-center cursor-pointer hover transition duration-200 hover:-translate-y-1 hover:shadow-lg hover:opacity-100 w-32 justify-center'>
                     <MdAdd size={20} className='text-white mr-2' />
                     <p className='text-white'>Add Note</p>
                 </div>
