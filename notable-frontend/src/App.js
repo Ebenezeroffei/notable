@@ -7,6 +7,7 @@ import Register from './pages/Auth/Register';
 import FavoriteNotes from './pages/FavoriteNotes';
 import Home from './pages/Home';
 import NoteDetail from './pages/NoteDetail';
+import SearchNotes from './pages/SearchNotes';
 
 const App = () => {
 
@@ -16,7 +17,7 @@ const App = () => {
                 <Route path='login/' element={<Login />} />
                 <Route path='register/' element={<Register />} />
                 <Route path='/' element={<Wrapper />}>
-                    <Route index element={<FavoriteNotes />} />
+                    <Route index element={<NoteDetail />} />
                 </Route>
             </Routes>
         </BrowserRouter>
