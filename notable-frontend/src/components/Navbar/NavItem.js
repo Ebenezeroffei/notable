@@ -18,13 +18,13 @@ const NavItem = ({ icon, text, index, isLogout = false }) => {
                         <span>{text}</span>
                     </Link>
                     : currentNavIndex === index
-                        ? <Link onClick={() => navigateTo(index)} className='w-full flex items-center border border-gray-100  p-2 rounded bg-indigo-500 shadow text-white mb-3'>
+                        ? <Link onClick={() => navigateTo(index, text)} className='w-full flex items-center border border-gray-100  p-2 rounded bg-indigo-500 shadow text-white mb-3'>
                             <span className='mr-3'>
                                 {icon}
                             </span>
                             <span>{text}</span>
                         </Link>
-                        : <Link onClick={() => navigateTo(index)} className='w-full flex items-center border border-gray-100  p-2 rounded bg-indigo-50 shadow text-gray-800 hover:bg-indigo-100 mb-3'>
+                        : <Link onClick={() => navigateTo(index, text)} className='w-full flex items-center border border-gray-100  p-2 rounded bg-indigo-50 shadow text-gray-800 hover:bg-indigo-100 mb-3'>
                             <span className='mr-3'>
                                 {icon}
                             </span>

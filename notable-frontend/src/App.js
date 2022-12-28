@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import NavBar from './components/Wrapper';
+import Wrapper from './components/Wrapper';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
+import Home from './pages/Home';
 
 const App = () => {
 
@@ -11,7 +12,9 @@ const App = () => {
             <Routes>
                 <Route path='login/' element={<Login />} />
                 <Route path='register/' element={<Register />} />
-                <Route path='/' element={<NavBar />} />
+                <Route path='/' element={<Wrapper />}>
+                    <Route index element={<Home />} />
+                </Route>
             </Routes>
         </BrowserRouter>
     );

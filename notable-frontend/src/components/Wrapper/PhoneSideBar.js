@@ -11,7 +11,7 @@ const PhoneSideBar = () => {
         <>
             {
                 isSmallScreen && showPhoneSideBar ?
-                    <section className='fixed w-screen h-screen z-10 flex top-0 left-0 transition-all duration-150'>
+                    <section className='fixed w-screen h-screen z-10 flex top-0 left-0 transition-all duration-150 z-20'>
                         <div className='flex-none w-60 bg-white'>
                             <NavBar />
                         </div>

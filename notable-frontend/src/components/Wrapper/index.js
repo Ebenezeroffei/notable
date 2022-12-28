@@ -3,6 +3,7 @@ import Navbar from '../Navbar'
 import Header from './Header';
 import PhoneSideBar from './PhoneSideBar';
 import { useNavStore } from '../../utils/store';
+import { Outlet } from 'react-router-dom';
 
 const Wrapper = () => {
     const bigScreen = useNavStore(state => state.bigScreen);
@@ -43,7 +44,7 @@ const Wrapper = () => {
                         <section className='ml-0 transition-all duration-150'>
                             <Header />
                             <div className='m-3'>
-                                Hello
+                                <Outlet />
                             </div>
                         </section>
                     </main>
@@ -54,7 +55,7 @@ const Wrapper = () => {
                         <section className='ml-60'>
                             <Header />
                             <div className='m-3'>
-                                Hello
+                                <Outlet />
                             </div>
                         </section>
                     </main>
