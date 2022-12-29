@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { textOnBlurHandler } from '../../utils/validation';
 
-const TextField = ({ isRequired = true, label, value, inputValue = '', helpText = '', errorText = 'Please provide a valid value.', pattern = /.+/, textType = "text" }) => {
+const TextArea = ({ value, label, isRequired = true, inputValue = '', helpText = '', errorText = 'Please provide a valid value.', pattern = /.+/, }) => {
     const [isError, setIsError] = useState(false);
-    errorText = isRequired ? errorText : '';
-
     const [inputValueState, setInputValueState] = useState(inputValue);
 
     const onChangeHandler = (ele) => {
@@ -18,7 +16,7 @@ const TextField = ({ isRequired = true, label, value, inputValue = '', helpText 
                 isRequired &&
                 <span className='ml-1 text-red-500 text-lg'>*</span>
             }
-            <input ref={value} value={inputValueState} onChange={onChangeHandler} type={textType} onBlur={() => textOnBlurHandler(pattern, value.current.value, setIsError)} className='outline-none block w-full border rounded focus:border-gray-300 focus:bg-gray-100 py-1 px-2 text-gray-600 bg-gray-50' />
+            <textarea ref={value} value={inputValue} onBlur={() => textOnBlurHandler(pattern, value.current.value, setIsError)} className='outline-none block w-full border rounded focus:border-gray-300 focus:bg-gray-100 py-1 px-2 text-gray-600 bg-gray-50' rows={10} ></textarea>
             {
                 isError
                     ? <p className='text-xs text-rose-500 ml-1'>{errorText}</p>
@@ -28,4 +26,4 @@ const TextField = ({ isRequired = true, label, value, inputValue = '', helpText 
     );
 }
 
-export default TextField;
+export default TextArea;
