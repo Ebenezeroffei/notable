@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
 import { textOnBlurHandler } from '../../utils/validation';
 
-const TextField = ({ isRequired = true, label, value, helpText = '', errorText = 'Please provide a valid value.', pattern = /.+/, textType = "text" }) => {
+const TextField = ({ isRequired = true, label, value, inputValue = '', helpText = '', errorText = 'Please provide a valid value.', pattern = /.+/, textType = "text" }) => {
     const [isError, setIsError] = useState(false);
     errorText = isRequired ? errorText : '';
+
+    const [inputValueState, setInputValueState] = useState(inputValue);
+
+    const onChangeHandler = (ele) => {
+        setInputValueState(ele.target.value);
+    }
 
     return (
         <section className='my-3'>
@@ -12,7 +18,7 @@ const TextField = ({ isRequired = true, label, value, helpText = '', errorText =
                 isRequired &&
                 <span className='ml-1 text-red-500 text-lg'>*</span>
             }
-            <input ref={value} type={textType} onBlur={() => textOnBlurHandler(pattern, value.current.value, setIsError)} className='outline-none block w-full border rounded focus:border-gray-300 focus:bg-gray-100 py-1 px-2 text-gray-600 bg-gray-50' />
+            <input ref={value} value={inputValueState} onChange={onChangeHandler} type={textType} onBlur={() => textOnBlurHandler(pattern, value.current.value, setIsError)} className='outline-none block w-full border rounded focus:border-gray-300 focus:bg-gray-100 py-1 px-2 text-gray-600 bg-gray-50' />
             {
                 isError
                     ? <p className='text-xs text-rose-500 ml-1'>{errorText}</p>
